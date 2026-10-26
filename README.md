@@ -7,21 +7,13 @@ The project aims to make flight comparison simple by presenting important inform
 
 ✨ Features
 Search Flights: Search for flights using departure airport, destination airport, and travel date.
-
 Airport Autocomplete: Find airports using city names, airport names, or airport codes.
-
 Live Flight Data: Fetch flight itineraries and fare information through the Ignav API.
-
 Compare Fares: View available flight options and compare their prices.
-
 Sort Results: Organize flight options by price or journey duration.
-
 Flight Details: View airline information, flight timings, and travel duration.
-
 Lowest Fare Highlight: Identify the lowest-priced option among the returned results.
-
 Responsive Interface: Explore flight information through a clean, user-friendly interface.
-
 Note: Available flights and fares depend on the API response. Prices may change and should be verified before booking.
 
 🛠️ Tech Stack
@@ -66,11 +58,8 @@ Follow these steps to run the project locally.
 Make sure you have installed:
 
 Node.js
-
 npm, which is included with Node.js
-
 An Ignav API key for live flight searches
-
 2. Clone the Repository
 git clone https://github.com/Mahi9391/Flight-proofcard.git
 Move into the project directory:
@@ -131,22 +120,16 @@ Actual results depend on API availability, route coverage, and the selected trav
 
 🔒 Security
 API credentials are stored in environment variables.
-
 .env is excluded from version control.
-
 The API key is used by the backend rather than being exposed directly in the browser.
-
 An .env.example file can be shared with placeholder values to document the required configuration.
-
 🔮 Future Improvements
 Potential enhancements include:
 
 Expanding airport coverage.
-
 Adding filters for airlines, stops, and price ranges.
-
 Improving loading, error, and empty-result states.
-
 Adding more detailed flight comparisons.
-
 Supporting additional travel preferences and search options.
+
+ProofCard — making flight comparison simpler, clearer, and more convenient.
