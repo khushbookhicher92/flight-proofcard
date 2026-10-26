@@ -1,135 +1,211 @@
-✈️ ProofCard — Flight Comparison
-Compare flight fares, check travel durations, and find suitable flights for your journey.
+# ✈️ ProofCard — Flight Comparison
 
-ProofCard is a React-based flight comparison application that helps users explore available flights between Indian cities. It connects a React frontend to an Express backend, which fetches flight fare data from the Ignav API.
+**Compare flight fares, explore travel options, and find suitable flights for your journey.**
 
-The project aims to make flight comparison simple by presenting important information such as ticket prices, airlines, departure and arrival times, and journey duration in one place.
+ProofCard is a React-based flight comparison application that helps users search for flights between Indian cities and compare available itineraries. It provides a clean, responsive interface for viewing airline information, departure and arrival times, journey duration, stops, and ticket prices.
 
-✨ Features
-Search Flights: Search for flights using departure airport, destination airport, and travel date.
-Airport Autocomplete: Find airports using city names, airport names, or airport codes.
-Live Flight Data: Fetch flight itineraries and fare information through the Ignav API.
-Compare Fares: View available flight options and compare their prices.
-Sort Results: Organize flight options by price or journey duration.
-Flight Details: View airline information, flight timings, and travel duration.
-Lowest Fare Highlight: Identify the lowest-priced option among the returned results.
-Responsive Interface: Explore flight information through a clean, user-friendly interface.
-Note: Available flights and fares depend on the API response. Prices may change and should be verified before booking.
+The application uses a React frontend and an Express.js backend to retrieve flight information from the Ignav API, keeping API credentials on the server rather than exposing them in the browser.
 
-🛠️ Tech Stack
-Technology	Purpose
-React	Building the user interface
-JavaScript	Application logic and interactions
-Vite	Frontend development and build tooling
-Tailwind CSS	Styling the interface
-Node.js	Running the backend
-Express.js	Creating the flight search API
-Ignav API	Retrieving flight fare information
-dotenv	Managing environment variables
-Git and GitHub	Version control and project hosting
-📁 Project Structure
+## ✨ Features
+
+- **Flight Search:** Search for flights by departure airport, destination airport, and travel date.
+- **Airport Search:** Enter airport codes or city names supported by the flight API.
+- **Live Flight Data:** Retrieve flight itineraries and fare information through the backend.
+- **Fare Comparison:** Compare ticket prices across available flight options.
+- **Sorting:** Sort flights by price or journey duration.
+- **Flight Details:** View airline names, flight numbers, departure and arrival times, stops, and duration when provided by the API.
+- **Lowest Fare Highlight:** Highlight the lowest-priced flight among the returned results.
+- **Responsive UI:** Use the application on mobile, tablet, and desktop screens.
+- **Loading and Error Handling:** Provide feedback while searching and when requests fail.
+- **Secure Configuration:** Keep API credentials in environment variables on the backend.
+
+> **Note:** Flight availability and prices depend on the upstream API response. Prices may change and should be verified before booking. ProofCard does not itself issue tickets.
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| React | Building reusable UI components |
+| JavaScript | Application logic and interactions |
+| Vite | Frontend development and build tooling |
+| Tailwind CSS | Responsive styling |
+| Node.js | Backend runtime |
+| Express.js | Backend API and request handling |
+| Ignav API | Flight itinerary and fare data |
+| dotenv | Loading environment variables |
+| Git and GitHub | Version control and source hosting |
+
+## 📁 Project Structure
+
+```text
 flight-proofcard/
-│
 ├── src/
 │   ├── frontend/
 │   │   ├── NewComponent.jsx
-│   │   └── index.jsx
-│   │
+│   │   ├── index.jsx
+│   │   └── flightService.js
 │   └── sandbox/
 │       ├── index.css
 │       └── main.jsx
-│
 ├── scripts/
 │   └── validate-publish.js
-│
 ├── .gitignore
-├── .env                  # Local API key; not committed
-├── .env.example          # Example environment configuration
+├── .env.example
 ├── index.html
 ├── package.json
 ├── package-lock.json
-├── server.js              # Express backend
+├── server.js
 ├── vite.config.js
 └── README.md
-🚀 Getting Started
-Follow these steps to run the project locally.
+```
 
-1. Prerequisites
-Make sure you have installed:
+*The structure above reflects the intended application layout. Adjust the tree if your actual files differ.*
 
-Node.js
-npm, which is included with Node.js
-An Ignav API key for live flight searches
-2. Clone the Repository
-git clone https://github.com/Mahi9391/Flight-proofcard.git
-Move into the project directory:
+## 🚀 Getting Started
 
-cd Flight-proofcard
-3. Install Dependencies
+### Prerequisites
+
+Install the following before running the project:
+
+- [Node.js](https://nodejs.org/) — preferably a current LTS release
+- npm
+- An Ignav API key with access to the required flight endpoint
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/khushbookhicher92/flight-proofcard.git
+cd flight-proofcard
+```
+
+### 2. Install dependencies
+
+```bash
 npm install
-4. Configure Environment Variables
-Create a .env file in the project root directory, alongside package.json and server.js.
+```
 
-Add your Ignav API key:
+### 3. Configure environment variables
 
-IGNAV_API_KEY=your_api_key_here
-Replace your_api_key_here with your actual API key.
+Create a `.env` file in the project root, alongside `package.json` and `server.js`.
 
-Security: Never commit your .env file or expose your API key in frontend code. The .env file is excluded from Git using .gitignore.
+Add your backend API key:
 
-5. Start the Backend
-Open a terminal in the project directory and run:
+```dotenv
+IGNAV_API_KEY=your_actual_api_key
+```
 
+If your frontend uses a configured backend URL, set the appropriate variable in the frontend environment as well. For example, if the frontend service reads `VITE_FLIGHTS_API_URL`:
+
+```dotenv
+VITE_FLIGHTS_API_URL=http://localhost:3001/api/flights
+```
+
+Use the variable names expected by your actual source code. Never put the Ignav secret key in a `VITE_*` variable because Vite exposes those variables to browser code.
+
+Create `.env.example` with placeholder values only:
+
+```dotenv
+IGNAV_API_KEY=your_ignav_api_key_here
+VITE_FLIGHTS_API_URL=http://localhost:3001/api/flights
+```
+
+Ensure `.env` is included in `.gitignore`.
+
+### 4. Start the backend
+
+Open a terminal in the project root:
+
+```bash
 node server.js
-The backend should start at:
+```
 
+The backend is expected to run at:
+
+```text
 http://localhost:3001
-The frontend sends flight search requests to the backend, which communicates with the Ignav API.
+```
 
-6. Start the Frontend
-Open a second terminal in the same project directory and run:
+Confirm the port configured in `server.js` if the startup address differs.
 
+### 5. Start the frontend
+
+Open a second terminal in the project root:
+
+```bash
 npm start
-Open the local URL displayed in the terminal to access the application.
+```
 
-Keep both terminals running while using the application.
+Open the local URL printed by Vite, usually:
 
-🔌 API Integration
-ProofCard uses an Express backend to communicate with the Ignav flight fares API.
+```text
+http://localhost:5173
+```
 
-Backend endpoint
+Keep both processes running while testing the application.
 
+> If `npm start` is not configured in `package.json`, use the development script defined there, commonly `npm run dev`.
+
+## 🔌 API Integration
+
+ProofCard uses a backend endpoint to process flight searches and retrieve data from Ignav.
+
+### Backend endpoint
+
+```http
 POST /api/flights
-Request body
+```
 
+### Example request
+
+```json
 {
   "from": "DEL",
   "to": "BOM",
   "date": "2026-11-15"
 }
-Field	Description
-from	Departure airport code
-to	Destination airport code
-date	Departure date in YYYY-MM-DD format
-The backend validates the search inputs, securely uses the API key stored in the environment, and forwards the request to Ignav. The returned itineraries are then used by the frontend to display flight options.
+```
 
-The backend uses the following upstream endpoint:
+| Field | Description |
+|---|---|
+| `from` | Departure airport code |
+| `to` | Destination airport code |
+| `date` | Departure date in `YYYY-MM-DD` format |
 
+### Upstream API
+
+```text
 https://ignav.com/api/fares/one-way
-Actual results depend on API availability, route coverage, and the selected travel date.
+```
 
-🔒 Security
-API credentials are stored in environment variables.
-.env is excluded from version control.
-The API key is used by the backend rather than being exposed directly in the browser.
-An .env.example file can be shared with placeholder values to document the required configuration.
-🔮 Future Improvements
-Potential enhancements include:
+The backend should validate incoming search parameters, use the API key stored in its environment, and forward requests to the upstream service according to its documented request format.
 
-Expanding airport coverage.
-Adding filters for airlines, stops, and price ranges.
-Improving loading, error, and empty-result states.
-Adding more detailed flight comparisons.
-Supporting additional travel preferences and search options.
+The frontend should communicate with your backend rather than calling the secret-key-protected upstream endpoint directly.
 
-ProofCard — making flight comparison simpler, clearer, and more convenient.
+The exact request headers, upstream payload, and response mapping must follow the Ignav API documentation and your `server.js` implementation.
+
+## 🔐 Security
+
+- Keep API keys in the backend environment.
+- Do not commit `.env` or other files containing credentials.
+- Commit `.env.example` with placeholder values only.
+- Validate and sanitize incoming search parameters on the backend.
+- Avoid returning API credentials or sensitive upstream error details to the frontend.
+- Configure CORS to allow only the origins required by your application in production.
+
+## 🧪 Troubleshooting
+
+**The frontend displays an HTML response instead of JSON**
+
+Check that `VITE_FLIGHTS_API_URL` points to the backend API endpoint, not the Vite development server or a website homepage.
+
+**The backend cannot access the upstream API**
+
+Check that `IGNAV_API_KEY` is set correctly, the upstream endpoint is valid, and your account has the required API access.
+
+**No flights are returned**
+
+Verify the airport codes, travel date, upstream API availability, and the response format expected by your frontend service.
+
+**Environment variable changes are not reflected**
+
+Restart the relevant development server after editing `.
